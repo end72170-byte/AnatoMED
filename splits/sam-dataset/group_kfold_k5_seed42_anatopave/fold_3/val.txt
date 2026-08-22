@@ -1,0 +1,16 @@
+case2
+case3
+case6
+case8
+case16
+case32
+case34
+case48
+case56
+case60
+case66
+case67
+case71
+case75
+case97
+case100

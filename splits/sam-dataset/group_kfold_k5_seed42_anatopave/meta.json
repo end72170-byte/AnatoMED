@@ -1,0 +1,51 @@
+{
+  "method": "stratified_group_kfold",
+  "group_unit": "case_id",
+  "k": 5,
+  "seed": 42,
+  "dataset_name": "sam-dataset",
+  "training_dataset_root": "dataset/sam-dataset/all",
+  "validation_dataset_root": "dataset/clip-dataset/all",
+  "num_cases": 83,
+  "positive_cases": 11,
+  "normal_cases": 72,
+  "fold_sizes": [
+    {
+      "fold": 0,
+      "train_cases": 65,
+      "val_cases": 18,
+      "val_positive_cases": 3,
+      "val_normal_cases": 15
+    },
+    {
+      "fold": 1,
+      "train_cases": 66,
+      "val_cases": 17,
+      "val_positive_cases": 2,
+      "val_normal_cases": 15
+    },
+    {
+      "fold": 2,
+      "train_cases": 67,
+      "val_cases": 16,
+      "val_positive_cases": 2,
+      "val_normal_cases": 14
+    },
+    {
+      "fold": 3,
+      "train_cases": 67,
+      "val_cases": 16,
+      "val_positive_cases": 2,
+      "val_normal_cases": 14
+    },
+    {
+      "fold": 4,
+      "train_cases": 67,
+      "val_cases": 16,
+      "val_positive_cases": 2,
+      "val_normal_cases": 14
+    }
+  ],
+  "only_train_val_files": true,
+  "generated_at_utc": "2026-07-24T13:22:30.678483+00:00"
+}

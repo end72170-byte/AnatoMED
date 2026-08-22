@@ -1,0 +1,23 @@
+# Core tensor and image stack.
+torch==2.0.1+cu117
+torchvision==0.15.2+cu117
+numpy==1.*
+Pillow
+opencv-python==4.10.0.84
+scipy
+
+# FetalCLIP, VLM, and parameter-efficient adaptation.
+open-clip-torch==2.26.1
+transformers[sentencepiece]==4.35.2
+huggingface_hub==0.25.0
+timm==0.9.7
+peft>=0.10.0
+accelerate>=0.25.0
+fsspec
+ftfy
+regex
+
+# Evaluation and lightweight utilities.
+bert-score
+tqdm
+--extra-index-url https://download.pytorch.org/whl/cu117

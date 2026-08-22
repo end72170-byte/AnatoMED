@@ -1,0 +1,28 @@
+# Local datasets, checkpoints, and generated runs are never part of the source tree.
+dataset/
+dataset-*/
+demo-dataset/
+splits/*
+!splits/README.md
+!splits/sam-dataset/
+!splits/sam-dataset/group_kfold_k5_seed42_anatopave/
+!splits/sam-dataset/group_kfold_k5_seed42_anatopave/**
+checkpoints/
+runs/
+artifacts/
+workflow/
+video_events/
+batch_videos_infer*/
+
+# Local model weights and generated reports.
+model/*_weights.*
+*.pdf
+*.log
+*_scores.csv
+clip_video_score_summary.jsonl
+video_events*.json
+
+# Python and notebook caches.
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
