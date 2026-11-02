@@ -1,0 +1,30 @@
+{
+  "seed": 42,
+  "max_epochs": 15,
+  "early_stopping_enabled": false,
+  "lr": 0.0003,
+  "weight_decay": 0.0001,
+  "tbptt_frames": 64,
+  "loss_temperature": 0.03,
+  "positive_weight": 6.285714285714286,
+  "model": {
+    "dim": 128,
+    "gamma": 0.06,
+    "threshold": 0.2,
+    "gate": 0.15,
+    "beta": 0.5
+  },
+  "quarantined_train_cases": [
+    "case48",
+    "case50"
+  ],
+  "derived_negative_cap_per_clip": 8,
+  "loss": "same positive-weighted BCE; mean within supervised clip, then equal mean across clips",
+  "optimizer_step": "one step per supervised clip; accumulated 64-frame truncated gradients divided by number of sampled targets in that clip",
+  "validation": "clip-balanced candidate loss on old 79 human references plus 48 coverage-derived high-score negatives; val labels never enter optimization",
+  "selection": "minimum validation candidate loss independently for each method, not FAR",
+  "initialization": "same fresh seed42 full parameter state for both; identical query+MLP tensors; freeze encoder; current-only freezes unused history parameters",
+  "history_write": "unchanged confidence-gated per-frame memory writes, not FSM-event writes; final support/acceptance always common old FSM",
+  "correction_to_fsm": "add residual equally to intact and cleft score channels only when original image gate passes; unchanged other channels and unchanged FSM thresholds",
+  "budget": "exactly 15 epochs each, one seed, no tuning; budget fixed to avoid early stopping confound"
+}

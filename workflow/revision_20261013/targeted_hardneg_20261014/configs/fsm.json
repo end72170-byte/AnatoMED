@@ -1,0 +1,17 @@
+{
+  "source": "inference_anatopave.py defaults",
+  "ema_alpha": 0.5,
+  "enter_threshold": 0.2,
+  "exit_threshold": 0.15,
+  "margin_threshold": 0.02,
+  "enter_streak": 3,
+  "exit_patience": 3,
+  "cooldown_frames": 40,
+  "topk": 5,
+  "min_state_frames": 4,
+  "max_state_frames": 36,
+  "sharpness_weight": 0.03,
+  "margin_weight": 0.4,
+  "motion_weight": 0.2,
+  "slot_representative_strategy": "highest_clip_score"
+}

@@ -27,6 +27,20 @@ The case-grouped baseline split is versioned under
 `splits/sam-dataset/group_kfold_k5_seed42_anatopave/`. A controlled real-data
 demo is provided under `demo-dataset/`; read its README before use.
 
+## Full historical search core
+
+`revision_batch1/search.py` provides the `AnatomicalSearch` module used by the
+Full historical-search experiments: causal four-role memory, candidate-dependent
+attention, a bounded score residual, and soft acquisition progression. It consumes
+frozen image embeddings and class scores and returns an explicit per-clip state.
+
+The original Full search and common FSM settings are preserved in
+`workflow/revision_20261013/targeted_hardneg_20261014/configs/search_full.json`
+and `workflow/revision_20261013/targeted_hardneg_20261014/configs/fsm.json`.
+These files accompany the search core; the existing incremental video entry
+points remain separate. Experiment runners, ablation models, review artifacts,
+and checkpoint files are not included in this source update.
+
 ## Verification
 
 Run the unit tests with:
