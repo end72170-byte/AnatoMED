@@ -27,8 +27,8 @@ from inference import (
     score_frame,
     set_random_seed,
 )
-from utils.anatopave_cache import sha256_file
-from utils.anatopave_video import CLASS_TO_SLOT, build_video_diagnosis
+from utils.anatomed_cache import sha256_file
+from utils.anatomed_video import CLASS_TO_SLOT, build_video_diagnosis
 from utils.runtime import _configure_warnings
 
 
@@ -37,7 +37,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--split_root",
         type=Path,
-        default=Path("splits/sam-dataset/group_kfold_k5_seed42_anatopave"),
+        default=Path("splits/sam-dataset/group_kfold_k5_seed42_anatomed"),
     )
     parser.add_argument(
         "--video_manifest",
@@ -350,7 +350,7 @@ def main() -> None:
                 f"fps={output['processing_fps']:.2f}"
             )
         fold_summary = {
-            "format": "anatopave-video-oof-fold-v1",
+            "format": "anatomed-video-oof-fold-v1",
             "fold": fold_name,
             "fold_dir": str(fold_dir.resolve()),
             "checkpoint_path": str(checkpoint_path),
@@ -371,7 +371,7 @@ def main() -> None:
             f"Expected {args.expected_videos} OOF videos, collected {len(all_results)}"
         )
     pooled = {
-        "format": "anatopave-video-oof-pooled-v1",
+        "format": "anatomed-video-oof-pooled-v1",
         "split_root": str(args.split_root.resolve()),
         "video_manifest": str(args.video_manifest.resolve()),
         "diagnosis_rule": "stable_event_pattern_then_ratio_v2",

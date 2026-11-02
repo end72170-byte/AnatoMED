@@ -11,7 +11,7 @@ from pathlib import Path
 
 from torch.utils.data import DataLoader
 
-# Allow direct execution as ``python data_process/validate_anatopave_stage1.py``.
+# Allow direct execution as ``python data_process/validate_anatomed_stage1.py``.
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from utils.examination_dataset import ExaminationDataset, RouterManifestNotReady, examination_collate
@@ -76,9 +76,9 @@ def build_oracle_router(observations_path: Path, split_file: Path, output_path: 
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--manifest_dir", type=Path, default=Path("artifacts/anatopave/phase0"))
-    parser.add_argument("--split_dir", type=Path, default=Path("splits/sam-dataset/group_kfold_k5_seed42_anatopave/fold_0"))
-    parser.add_argument("--output", type=Path, default=Path("artifacts/anatopave/phase1/stage1_validation.json"))
+    parser.add_argument("--manifest_dir", type=Path, default=Path("artifacts/anatomed/phase0"))
+    parser.add_argument("--split_dir", type=Path, default=Path("splits/sam-dataset/group_kfold_k5_seed42_anatomed/fold_0"))
+    parser.add_argument("--output", type=Path, default=Path("artifacts/anatomed/phase1/stage1_validation.json"))
     parser.add_argument("--seed", type=int, default=42)
     return parser.parse_args()
 
@@ -96,7 +96,7 @@ def main() -> None:
         condition_source="gt",
         seed=args.seed,
     )
-    with tempfile.TemporaryDirectory(prefix="anatopave_oracle_") as temp_dir:
+    with tempfile.TemporaryDirectory(prefix="anatomed_oracle_") as temp_dir:
         oracle_path = Path(temp_dir) / "router_manifest_oracle.jsonl"
         build_oracle_router(observations_path, split_dir / "val.txt", oracle_path)
         validation = ExaminationDataset(

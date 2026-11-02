@@ -5,7 +5,7 @@ import unittest
 import torch
 
 from inference import merge_adjacent_same_label_events
-from utils.anatopave_video import (
+from utils.anatomed_video import (
     IncrementalSlotCache,
     build_rule_based_summary,
     build_video_diagnosis,
@@ -13,7 +13,7 @@ from utils.anatopave_video import (
 )
 
 
-class AnatoPAVEVideoStateTest(unittest.TestCase):
+class AnatoMEDVideoStateTest(unittest.TestCase):
     @staticmethod
     def _update_hard_palate(
         cache: IncrementalSlotCache,

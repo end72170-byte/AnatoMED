@@ -1,4 +1,4 @@
-"""Export fold-specific FetalCLIP predictions as an ANATOPAVE router manifest."""
+"""Export fold-specific FetalCLIP predictions as an AnatoMED router manifest."""
 
 from __future__ import annotations
 
@@ -101,7 +101,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--observations",
         type=Path,
-        default=Path("artifacts/anatopave/phase0/observations.jsonl"),
+        default=Path("artifacts/anatomed/phase0/observations.jsonl"),
     )
     parser.add_argument("--fold_dir", type=Path, required=True)
     parser.add_argument("--checkpoint", type=Path, required=True)

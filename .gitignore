@@ -5,8 +5,8 @@ demo-dataset/
 splits/*
 !splits/README.md
 !splits/sam-dataset/
-!splits/sam-dataset/group_kfold_k5_seed42_anatopave/
-!splits/sam-dataset/group_kfold_k5_seed42_anatopave/**
+!splits/sam-dataset/group_kfold_k5_seed42_anatomed/
+!splits/sam-dataset/group_kfold_k5_seed42_anatomed/**
 checkpoints/
 runs/
 artifacts/

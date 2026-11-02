@@ -5,8 +5,8 @@ import unittest
 import torch
 from torch import nn
 
-from models.anatopave import AnatoPAVEHeads
-from utils.anatopave_cache import CompactSummaryCache, assemble_slot_summaries
+from models.anatomed import AnatoMEDHeads
+from utils.anatomed_cache import CompactSummaryCache, assemble_slot_summaries
 from utils.evidence_injection import EvidenceEmbeddingInjector
 
 
@@ -53,7 +53,7 @@ class SharedGroundingTest(unittest.TestCase):
 
     def test_composer_off_recovers_strict_baseline_and_losses_reach_composer(self) -> None:
         torch.manual_seed(3)
-        heads = AnatoPAVEHeads(
+        heads = AnatoMEDHeads(
             summary_dim=12, dense_feature_dim=16, vlm_dim=20,
             composer_dim=16, grounding_dim=16, num_heads=4,
         )

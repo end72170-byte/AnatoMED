@@ -1,4 +1,4 @@
-"""Independent-examination multi-view Dataset for ANATOPAVE phase 1."""
+"""Independent-examination multi-view Dataset for AnatoMED phase 1."""
 
 from __future__ import annotations
 
@@ -54,6 +54,21 @@ def _read_split_cases(split_file: Path) -> set[str]:
 def _resolve_path(value: str, project_root: Path) -> Path:
     path = Path(value)
     return path if path.is_absolute() else (project_root / path)
+
+
+def _read_observation_text(raw: Mapping[str, Any], project_root: Path) -> str:
+    """Read legacy inline labels or reconstruct their text from a path-only release index.
+
+    TXT parsing follows the manifest builder: skip blank lines and join lines two
+    and three, falling back to line one when no detailed text is available.
+    """
+    if raw.get("main_text") is not None:
+        return str(raw["main_text"])
+    text_path = _resolve_path(str(raw["text_path"]), project_root)
+    lines = [line.strip() for line in text_path.read_text(encoding="utf-8-sig").splitlines() if line.strip()]
+    if not lines:
+        raise ValueError(f"Empty observation text file: {text_path}")
+    return " ".join(lines[1:3]) if len(lines) >= 2 else lines[0]
 
 
 @dataclass(frozen=True)
@@ -231,13 +246,14 @@ class ExaminationDataset(Dataset):
                 value["dropped"] = True
 
     def __getitem__(self, index: int) -> Dict[str, Any]:
+        """Load the main image/mask and labels, including path-only public text metadata."""
         main = self._items[index]
         condition = self._gt_condition(main, index) if self.condition_source == "gt" else self._router_condition(main)
         self._apply_dropout(condition, index)
 
         main_image_path = _resolve_path(main.raw["image_path"], self.project_root)
         main_mask_path = _resolve_path(main.raw["mask_path"], self.project_root)
-        main_text = str(main.raw["main_text"])
+        main_text = _read_observation_text(main.raw, self.project_root)
         raw_main_image = Image.open(main_image_path).convert("RGB")
         raw_main_mask = Image.open(main_mask_path).convert("L")
         mask_np = (np.asarray(raw_main_mask, dtype=np.uint8) > 127).astype(np.float32)

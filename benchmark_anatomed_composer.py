@@ -7,7 +7,7 @@ import time
 
 import torch
 
-from models.anatopave import AvailabilityAwareComposer
+from models.anatomed import AvailabilityAwareComposer
 
 
 def main() -> None:

@@ -1,5 +1,5 @@
 {
-  "source": "inference_anatopave.py defaults",
+  "source": "inference_anatomed.py defaults",
   "ema_alpha": 0.5,
   "enter_threshold": 0.2,
   "exit_threshold": 0.15,

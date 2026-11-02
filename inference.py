@@ -4,7 +4,7 @@ Video inference with FetalCLIP-triggered FSM and buffered keyframe selection.
 Example:
 python inference.py \
   --video_path /data/clip-dataset/all/case/normal/high/video.avi \
-  --checkpoint_path /checkpoints/anatopave.pt \
+  --checkpoint_path /checkpoints/anatomed.pt \
   --fetalclip_weights /checkpoints/fetalclip.pt \
   --out_json runs/video_events.json \
   --save_dir runs/video_events

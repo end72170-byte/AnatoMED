@@ -6,11 +6,11 @@ cd "$repo_root" || exit 1
 export HF_HUB_OFFLINE=1
 export TRANSFORMERS_OFFLINE=1
 
-out="${ANATOPAVE_RUN_DIR:-runs/anatopave}"
+out="${ANATOMED_RUN_DIR:-runs/anatomed}"
 log="$out/full_eval.log"
 
 echo "[eval-start] best $(date -Is)" | tee "$log"
-python eval_anatopave.py \
+python eval_anatomed.py \
   --checkpoint "$out/best.pt" \
   --out_json "$out/eval_best_full.json" \
   --gen_max_new_tokens 320 \
@@ -22,7 +22,7 @@ if [[ $best_status -ne 0 ]]; then
 fi
 
 echo "[eval-start] last $(date -Is)" | tee -a "$log"
-python eval_anatopave.py \
+python eval_anatomed.py \
   --checkpoint "$out/resume_latest.pt" \
   --out_json "$out/eval_last_full.json" \
   --gen_max_new_tokens 320 \

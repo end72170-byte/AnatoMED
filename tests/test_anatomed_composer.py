@@ -6,7 +6,7 @@ from pathlib import Path
 
 import torch
 
-from models.anatopave import AvailabilityAwareComposer
+from models.anatomed import AvailabilityAwareComposer
 
 
 class AvailabilityAwareComposerTest(unittest.TestCase):

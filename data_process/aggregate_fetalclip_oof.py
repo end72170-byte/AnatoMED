@@ -66,12 +66,12 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--metrics_root",
         type=Path,
-        default=Path("artifacts/anatopave/phase2"),
+        default=Path("artifacts/anatomed/phase2"),
     )
     parser.add_argument(
         "--observations",
         type=Path,
-        default=Path("artifacts/anatopave/phase0/observations.jsonl"),
+        default=Path("artifacts/anatomed/phase0/observations.jsonl"),
     )
     parser.add_argument("--output", type=Path, required=True)
     return parser.parse_args()

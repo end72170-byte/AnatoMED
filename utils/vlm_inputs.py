@@ -119,14 +119,14 @@ def build_teacher_forcing_inputs(
     return vlm_inputs_list, labels_list
 
 
-def build_anatopave_teacher_forcing_inputs(
+def build_anatomed_teacher_forcing_inputs(
     processor: Any,
     images: List[Image.Image],
     prompts: List[str],
     target_texts: List[str],
     system_prompt: str,
 ) -> Tuple[List[Dict[str, torch.Tensor]], List[torch.Tensor]]:
-    """Build ANATOPAVE inputs with one explicit evidence placeholder.
+    """Build AnatoMED inputs with one explicit evidence placeholder.
 
     The projected Composer context replaces ``<evidence>`` at the embedding
     layer.  Keeping this token in the normal chat template lets the same input
@@ -170,7 +170,7 @@ def build_anatopave_teacher_forcing_inputs(
     return inputs, labels_list
 
 
-def build_anatopave_generation_inputs(
+def build_anatomed_generation_inputs(
     processor: Any,
     images: List[Image.Image],
     prompts: List[str],
@@ -205,3 +205,8 @@ def build_anatopave_generation_inputs(
             )
         )
     return output
+
+
+# Keep historical callers compatible; new code uses the AnatoMED names.
+build_anatopave_teacher_forcing_inputs = build_anatomed_teacher_forcing_inputs
+build_anatopave_generation_inputs = build_anatomed_generation_inputs
